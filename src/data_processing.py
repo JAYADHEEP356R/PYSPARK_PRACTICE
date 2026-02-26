@@ -22,7 +22,7 @@ df_bad = df_raw.filter(
     (col("quantity").isNull())
 )
 
-df_good = df_raw.subtract(df_bad).dropDuplicates(["order_id"]).dropna().cache()
+df_good = df_raw.subtract(df_bad).dropDuplicates(["order_id"]).dropna(subset=["order_id","price","quantity","order_date",""]).cache()
 
 df_good.show()
 
