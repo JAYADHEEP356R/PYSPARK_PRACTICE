@@ -8,6 +8,8 @@ doinit()
 
 Spark = SparkSession.builder.appName("data_processing").getOrCreate()
 df_raw = Spark.read.option("header", True).option("inferSchema", True).csv("sales_data_dirty.csv")
+print("INITIAL RAW DATA")
+df_raw.show()
 
 #DATA CLEANING
 df_cleaned = df_raw.withColumn("order_date",to_date(col("order_date"),"yyyy-MM-dd")) \
